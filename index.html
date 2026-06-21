@@ -3,86 +3,87 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Husnify PK</title>
+<title>Husnify PK - Premium Collection</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Arial,sans-serif;background:#fff7fb;color:#333}
-header{background:linear-gradient(135deg,#ffd6e8,#fff);padding:70px 20px;text-align:center}
-h1{font-size:56px;color:#d63384}
-.hero-p{margin:15px 0 25px;font-size:20px}
-.btn{background:#25D366;color:#fff;padding:14px 28px;border-radius:30px;text-decoration:none;font-weight:bold}
-.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:15px;padding:30px}
-.feature{background:#fff;padding:20px;border-radius:16px;box-shadow:0 4px 12px rgba(0,0,0,.08);text-align:center}
-.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:25px;padding:40px}
-.card{background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 8px 18px rgba(0,0,0,.08)}
-.card img{width:100%;height:300px;object-fit:cover}
-.card-content{padding:15px;text-align:center}
-.price{color:#d63384;font-size:24px;font-weight:bold;margin:10px 0}
-.add{background:#d63384;color:white;border:none;padding:12px 18px;border-radius:25px;cursor:pointer}
-.cart{position:fixed;bottom:20px;right:20px;background:#d63384;color:#fff;padding:15px 20px;border-radius:30px;cursor:pointer}
-footer{text-align:center;padding:30px;background:#111;color:#fff}
+body{font-family:Arial,sans-serif;background:#fffafc;color:#333}
+nav{position:sticky;top:0;background:rgba(255,255,255,.95);backdrop-filter:blur(10px);padding:15px 8%;display:flex;justify-content:space-between;box-shadow:0 2px 12px rgba(0,0,0,.08)}
+.logo{font-size:28px;font-weight:bold;color:#c2185b}
+.hero{padding:90px 20px;text-align:center;background:linear-gradient(135deg,#ffe0ef,#fff)}
+.hero h1{font-size:60px;color:#c2185b}
+.hero p{margin:15px auto;max-width:700px;font-size:20px}
+.btn{display:inline-block;padding:14px 28px;border-radius:30px;text-decoration:none;font-weight:bold}
+.whatsapp{background:#25D366;color:#fff}
+.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;padding:40px 8%}
+.feature,.card,.review{background:#fff;border-radius:20px;box-shadow:0 8px 25px rgba(0,0,0,.08);padding:20px}
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:25px;padding:20px 8% 50px}
+.card{padding:0;overflow:hidden}
+.card img{width:100%;height:320px;object-fit:cover}
+.info{padding:18px;text-align:center}
+.price{font-size:24px;color:#c2185b;font-weight:bold;margin:10px 0}
+button{background:#c2185b;color:white;border:none;padding:12px 20px;border-radius:25px;cursor:pointer}
+.reviews{padding:20px 8% 50px;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
+.floating{position:fixed;right:20px;bottom:20px;background:#25D366;color:#fff;padding:15px 20px;border-radius:40px;text-decoration:none;font-weight:bold}
+footer{background:#111;color:#fff;text-align:center;padding:35px}
 </style>
 </head>
 <body>
+<nav>
+<div class="logo">✨ Husnify PK</div>
+<div>🛒 <span id="count">0</span></div>
+</nav>
 
-<header>
-<h1>✨ Husnify PK</h1>
-<p class="hero-p">Elegant Earrings Collection • Only Rs.250 Each</p>
-<a class="btn" href="https://wa.me/923289425481" target="_blank">Order on WhatsApp</a>
-</header>
+<section class="hero">
+<h1>Luxury Earrings Collection</h1>
+<p>Elegant designs for every occasion. Premium quality earrings at only Rs.250 each.</p>
+<a class="btn whatsapp" href="https://wa.me/923289425481" target="_blank">Order Now</a>
+</section>
 
 <section class="features">
 <div class="feature">🚚 All Pakistan Delivery</div>
 <div class="feature">💎 Premium Quality</div>
-<div class="feature">💖 Trendy Designs</div>
+<div class="feature">💖 Trending Designs</div>
 <div class="feature">💬 WhatsApp Ordering</div>
 </section>
 
 <section class="products">
-<div class="card">
-<img src="ChatGPT Image May 17, 2026, 07_15_07 AM.png">
-<div class="card-content"><h3>Rose Gold Crystal Earrings</h3><div class="price">Rs.250</div><button class="add" onclick="addItem('Rose Gold Crystal Earrings')">Add To Cart</button></div>
-</div>
-
-<div class="card">
-<img src="ChatGPT Image May 17, 2026, 07_28_52 AM.png">
-<div class="card-content"><h3>Black Flower Tassel Earrings</h3><div class="price">Rs.250</div><button class="add" onclick="addItem('Black Flower Tassel Earrings')">Add To Cart</button></div>
-</div>
-
-<div class="card">
-<img src="ChatGPT Image May 3, 2026, 01_20_28 AM.png">
-<div class="card-content"><h3>Gold Pearl Jhumka</h3><div class="price">Rs.250</div><button class="add" onclick="addItem('Gold Pearl Jhumka')">Add To Cart</button></div>
-</div>
-
-<div class="card">
-<img src="ChatGPT Image May 5, 2026, 06_39_23 AM.png">
-<div class="card-content"><h3>Silver Pearl Jhumka</h3><div class="price">Rs.250</div><button class="add" onclick="addItem('Silver Pearl Jhumka')">Add To Cart</button></div>
-</div>
+<div class="card"><img src="ChatGPT Image May 17, 2026, 07_15_07 AM.png"><div class="info"><h3>Rose Gold Crystal Earrings</h3><div class="price">Rs.250</div><button onclick="add('Rose Gold Crystal Earrings')">Add To Cart</button></div></div>
+<div class="card"><img src="ChatGPT Image May 17, 2026, 07_28_52 AM.png"><div class="info"><h3>Black Flower Tassel Earrings</h3><div class="price">Rs.250</div><button onclick="add('Black Flower Tassel Earrings')">Add To Cart</button></div></div>
+<div class="card"><img src="ChatGPT Image May 3, 2026, 01_20_28 AM.png"><div class="info"><h3>Gold Pearl Jhumka</h3><div class="price">Rs.250</div><button onclick="add('Gold Pearl Jhumka')">Add To Cart</button></div></div>
+<div class="card"><img src="ChatGPT Image May 5, 2026, 06_39_23 AM.png"><div class="info"><h3>Silver Pearl Jhumka</h3><div class="price">Rs.250</div><button onclick="add('Silver Pearl Jhumka')">Add To Cart</button></div></div>
 </section>
 
-<div class="cart" onclick="checkout()">🛒 Checkout (<span id="count">0</span>)</div>
+<h2 style="text-align:center;color:#c2185b">Customer Reviews ❤️</h2>
+<section class="reviews">
+<div class="review">⭐⭐⭐⭐⭐<br>Beautiful quality and fast delivery!</div>
+<div class="review">⭐⭐⭐⭐⭐<br>Exactly as shown in pictures.</div>
+<div class="review">⭐⭐⭐⭐⭐<br>Loved the packaging and design.</div>
+</section>
 
 <footer>
 <h3>Husnify PK</h3>
 <p>WhatsApp: 03289425481</p>
+<p>Elegant Jewelry & Fashion Store</p>
 </footer>
+
+<a class="floating" href="#" onclick="checkout()">🛒 Checkout</a>
 
 <script>
 let cart=[];
-function addItem(name){
-cart.push(name);
+function add(item){
+cart.push(item);
 document.getElementById('count').innerText=cart.length;
-alert(name+' added to cart');
+alert(item+' added to cart');
 }
 function checkout(){
-if(cart.length===0){alert('Cart is empty');return;}
+if(cart.length===0){alert('Cart is empty');return false;}
 let total=cart.length*250;
 let msg='Assalamualaikum Husnify PK,%0A%0AI want to order:%0A';
-cart.forEach(i=>msg+='• '+i+' - Rs.250%0A');
-msg+='%0ATotal: Rs.'+total+'%0A%0AName:%0AAddress:%0ACity:';
+cart.forEach(x=>msg+='• '+x+' - Rs.250%0A');
+msg+='%0ATotal: Rs.'+total+'%0A%0AName:%0ACity:%0AAddress:';
 window.open('https://wa.me/923289425481?text='+msg,'_blank');
+return false;
 }
 </script>
-
 </body>
 </html>
