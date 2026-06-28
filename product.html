@@ -197,7 +197,7 @@ nav {
 
 <div class="topbar">
   <div class="topbar-left">
-    <span>🚚 Free Delivery on Orders Above Rs. 2000</span>
+    <span>🚚 Free Delivery on Orders Above Rs. 1000 | Rs. 200 Delivery Charges Below Rs. 1000</span>
     <span>📦 Cash on Delivery Available</span>
   </div>
   <div class="topbar-right">
@@ -307,7 +307,12 @@ nav {
     <p style="color:var(--mid);text-align:center;margin-top:30px;font-size:14px;">Your cart is empty</p>
   </div>
   <div class="cart-foot">
+    <div class="cart-total-row" style="font-size:14px;font-weight:500;margin-bottom:6px;">Products Total: <span id="cartSubtotal" style="color:var(--dark);font-size:15px;">Rs. 0</span></div>
+    <div class="cart-total-row" style="font-size:14px;font-weight:500;margin-bottom:6px;">Delivery Charges: <span id="cartDelivery" style="color:#c44b00;font-size:15px;">Rs. 200</span></div>
+    <div style="border-top:1px solid var(--border);margin:10px 0;"></div>
     <div class="cart-total-row">Total: <span id="cartTotal">Rs. 0</span></div>
+    <div id="freeDeliveryMsg" style="display:none;background:#e8f8ee;color:#25a244;font-size:12px;font-weight:600;padding:7px 12px;border-radius:8px;margin-bottom:10px;text-align:center;">🎉 Mubarak! Aapki Free Delivery ho gayi!</div>
+    <div id="deliveryWarning" style="background:#fff8ec;color:#c44b00;font-size:12px;padding:7px 12px;border-radius:8px;margin-bottom:10px;text-align:center;">⚠️ Rs. 1000 se upar order karo — Delivery FREE ho jaye gi!</div>
     <button onclick="checkoutWA()" class="btn btn-wa" style="width:100%;">💬 Proceed to Order</button>
     <div class="cart-note">You will be redirected to WhatsApp</div>
   </div>
@@ -424,12 +429,18 @@ function renderCart() {
   const wrap = document.getElementById('cartItems');
   if (!cart.length) {
     wrap.innerHTML = '<p style="color:var(--mid);text-align:center;margin-top:30px;font-size:14px;">Your cart is empty</p>';
-    document.getElementById('cartTotal').innerText = 'Rs. 0';
+    document.getElementById('cartSubtotal').innerText = 'Rs. 0';
+    document.getElementById('cartDelivery').innerText = 'Rs. 200';
+    document.getElementById('cartDelivery').style.color = '#c44b00';
+    document.getElementById('cartTotal').innerText = 'Rs. 200';
+    document.getElementById('freeDeliveryMsg').style.display = 'none';
+    document.getElementById('deliveryWarning').style.display = 'block';
+    document.getElementById('deliveryWarning').innerText = '⚠️ Rs. 1000 se upar order karo — Delivery FREE ho jaye gi!';
     return;
   }
-  let html = ''; let total = 0;
+  let html = ''; let subtotal = 0;
   cart.forEach((item, i) => {
-    total += item.price * item.qty;
+    subtotal += item.price * item.qty;
     html += `<div class="cart-item">
       <img class="cart-item-img" src="${item.images[0]}" alt="">
       <div>
@@ -445,7 +456,19 @@ function renderCart() {
     </div>`;
   });
   wrap.innerHTML = html;
+
+  const delivery = subtotal >= 1000 ? 0 : 200;
+  const total = subtotal + delivery;
+
+  document.getElementById('cartSubtotal').innerText = 'Rs. ' + subtotal;
+  document.getElementById('cartDelivery').innerText = delivery === 0 ? 'FREE 🎉' : 'Rs. 200';
+  document.getElementById('cartDelivery').style.color = delivery === 0 ? '#25a244' : '#c44b00';
   document.getElementById('cartTotal').innerText = 'Rs. ' + total;
+  document.getElementById('freeDeliveryMsg').style.display = delivery === 0 ? 'block' : 'none';
+  document.getElementById('deliveryWarning').style.display = delivery === 0 ? 'none' : 'block';
+  if (delivery > 0) {
+    document.getElementById('deliveryWarning').innerText = '⚠️ Rs. ' + (1000 - subtotal) + ' aur ka order karo — Delivery FREE ho jaye gi!';
+  }
 }
 
 function changeQty(i, d) {
@@ -470,19 +493,27 @@ function closeCart() {
 }
 
 function buyNow() {
-  let msg = 'Assalamualaikum Husnify PK! 🌸\n\nI want to order:\n• ' + curProduct.name + ' — Rs. ' + curProduct.price + '\n\nName:\nCity:\nAddress:';
+  const delivery = curProduct.price >= 1000 ? 0 : 200;
+  let msg = 'Assalamualaikum Husnify PK! 🌸\n\nI want to order:\n• ' + curProduct.name + ' — Rs. ' + curProduct.price;
+  msg += '\nDelivery Charges: ' + (delivery === 0 ? 'FREE 🎉' : 'Rs. 200');
+  msg += '\nGrand Total: Rs. ' + (curProduct.price + delivery);
+  msg += '\n\nName:\nCity:\nAddress:';
   window.open('https://wa.me/923289425481?text=' + encodeURIComponent(msg), '_blank');
 }
 
 function checkoutWA() {
   if (!cart.length) { alert('Cart is empty!'); return; }
   let msg = 'Assalamualaikum Husnify PK! 🌸\n\nI want to order:\n';
-  let total = 0;
+  let subtotal = 0;
   cart.forEach(item => {
     msg += '• ' + item.name + ' x' + item.qty + ' — Rs. ' + (item.price * item.qty) + '\n';
-    total += item.price * item.qty;
+    subtotal += item.price * item.qty;
   });
-  msg += '\nTotal: Rs. ' + total + '\n\nName:\nCity:\nAddress:';
+  const delivery = subtotal >= 1000 ? 0 : 200;
+  msg += '\nProducts Total: Rs. ' + subtotal;
+  msg += '\nDelivery Charges: ' + (delivery === 0 ? 'FREE 🎉' : 'Rs. 200');
+  msg += '\nGrand Total: Rs. ' + (subtotal + delivery);
+  msg += '\n\nName:\nCity:\nAddress:';
   window.open('https://wa.me/923289425481?text=' + encodeURIComponent(msg), '_blank');
 }
 
